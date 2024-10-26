@@ -1,0 +1,14 @@
+class cat:
+    def __init__(self, name, age, weight, discription):
+        self.name = name
+        self.age = age
+        self.weight = weight
+        self.description = discription
+    def get_info(self):
+        print("Имя: " + self.name)
+        print("Возраст: " + str(self.age))
+        print("Вес: " + str(self.weight))
+        print("Описание: " + self.description)
+
+my_cat = cat("Барсик", 3, 4,"Любит кушать")
+my_cat.get_info()
