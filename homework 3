@@ -1,0 +1,58 @@
+class Engine:
+    def __init__(self):
+        self.is_running = False
+
+    def start(self):
+        if not self.is_running:
+            self.is_running = True
+            print("Двигатель запущен.")
+        else:
+            print("Двигатель уже работает.")
+
+    def stop(self):
+        if self.is_running:
+            self.is_running = False
+            print("Двигатель выключен.")
+        else:
+            print("Двигатель уже выключен.")
+
+
+class Car:
+    def __init__(self, brand, max_speed):
+        self.brand = brand
+        self.engine = Engine()
+        self.speed = 0
+        self.max_speed = max_speed
+
+    def start_engine(self):
+        self.engine.start()
+
+    def stop_engine(self):
+        self.engine.stop()
+
+    def accelerate(self, increment):
+        if self.engine.is_running:
+            if self.speed + increment > self.max_speed:
+                self.speed = self.max_speed
+                print("Машина", self.brand, "достигла максимальной скорости", self.max_speed, "км/ч.")
+            else:
+                self.speed += increment
+                print("Машина", self.brand, "ускорилась до", self.speed, "км/ч.")
+        else:
+            print("Двигатель не запущен! Сначала запустите двигатель.")
+
+    def brake(self, decrement):
+        if self.speed > 0:
+            self.speed = max(0, self.speed - decrement)
+            print("Машина", self.brand, "замедлилась до", self.speed, "км/ч.")
+        else:
+            print("Машина уже стоит на месте.")
+
+
+car = Car("Toyota", 120)
+car.start_engine()
+car.accelerate(50)
+car.accelerate(80)
+car.brake(60)
+car.brake(70)
+car.stop_engine()
